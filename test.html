@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            border: 1px solid #aaa;
+            display: block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("canvas");
+            canvas.width = 1024;
+            canvas.height = 768;
+            if (canvas.getContext("2d")) {
+                var context = canvas.getContext("2d");
+                //绘制设置
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(700, 700);
+                context.lineTo(100, 700);
+                context.lineTo(100, 100);
+                context.closePath();
+
+                //设置、绘制边框
+                context.lineWidth = "2";
+                context.strokeStyle = "#880055";
+
+                context.stroke(); //进行绘制
+
+
+                //设置、填充颜色
+                context.fillStyle = "rgb(100,200,320)";
+                context.fill(); //进行填充
+
+                context.beginPath();
+                context.moveTo(300, 100);
+                context.lineTo(900, 700);
+                context.closePath();
+
+                context.lineWidth = "2";
+                context.strokeStyle = "#2255dd";
+
+                context.stroke();
+
+
+                //画弧
+
+                for (var i = 0; i < 10; i++) {
+                    context.beginPath();
+                    context.arc(50 + 80 * i, 50, 30, 0, 2 * Math.PI * (i + 1) / 10);
+                    context.closePath();
+                    context.lineWidth = "2";
+                    context.strokeStyle = "black";
+                    context.stroke();
+                }
+
+
+
+
+                for(var i=0;i<10;i++){
+                    context.beginPath();
+                    context.arc(50+80*i,150,30,0,2*Math.PI*(i+1)/10,true);
+                    context.lineWidth = "2";
+                    context.strokeStyle = "black";
+                    context.stroke();
+                } 
+                for(var i=0;i<10;i++){
+                    context.beginPath();
+                    context.arc(50+80*i,150,30,0,2*Math.PI*(i+1)/10);
+                    context.lineWidth = "2";
+                    context.strokeStyle = "black";
+                    context.stroke();
+                    context.fillStyle="black";
+                    context.fill();
+                }
+
+
+
+                 for(var i=0;i<10;i++){
+                    context.beginPath();
+                    context.arc(50+80*i,250,30,0,2*Math.PI*(i+1)/10,true);
+                    context.lineWidth = "2";
+                    context.strokeStyle = "black";
+                    context.stroke();
+                    context.fillStyle="black";
+                    context.fill();
+                }
+
+
+
+            } else {
+                alert("当前浏览器不支canvas,请更换浏览器");
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

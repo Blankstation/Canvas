@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>七巧板</title>
+    <style>
+        #canvas{
+            border:1px solid #000;
+            display: block;
+            margin: auto;
+        }
+    </style>    
+</head>
+<body>
+    <canvas id="canvas">
+        当前浏览器不支持canvas，请更换浏览器
+    </canvas>
+    <script>
+        var tan=[
+            {p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#880055"},
+            {p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#6600ee"},
+            {p:[{x:0,y:800},{x:400,y:800},{x:200,y:600}],color:"#ef3d61"},
+            {p:[{x:200,y:600},{x:400,y:400},{x:600,y:600},{x:400,y:800}],color:"#f9f51a"},
+            {p:[{x:400,y:400},{x:600,y:200},{x:600,y:600}],color:"#a54c09"},
+            {p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#fa8ccc"},
+            {p:[{x:800,y:800},{x:400,y:800},{x:800,y:400}],color:"#f6ca29"}
+           
+            ];
+
+        var canvas=document.getElementById("canvas");
+        canvas.width="800";
+        canvas.height="800";
+        var context=canvas.getContext("2d");
+        for(var i=0;i<tan.length;i++){
+            draw(tan[i],context);
+        }
+
+        function draw(l,ctx){
+
+            ctx.beginPath();
+            ctx.moveTo(l.p[0].x,l.p[0].y);
+            for(var i=1;i<l.p.length;i++){
+                ctx.lineTo(l.p[i].x,l.p[i].y);
+            }
+            ctx.closePath();
+            ctx.fillStyle=l.color;
+            ctx.fill();
+
+            ctx.linWidth="2";
+            ctx.strokeStyle="black";
+            ctx.stroke();
+        }
+    </script>   
+</body>
+</html>

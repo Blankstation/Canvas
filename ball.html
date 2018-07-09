@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小球运动</title>
+    <style>
+        #canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas">
+        当前浏览器不支持canvas，请更换浏览器重新尝试。
+    </canvas>
+    <script>
+        var ball = {
+            x: 600,
+            y: 50,
+            r: 5,
+            g: 2,
+            vx: -4,
+            vy: 0,
+            color: "#33ff00"
+        };
+        var canvas = document.getElementById("canvas");
+        canvas.width = "1024";
+        canvas.height = "650";
+        var ctx = canvas.getContext("2d");
+        setInterval(
+            function () {
+                render(ctx);
+                updata();
+            },
+            50
+        );
+
+        function updata() {
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+            ball.vy += ball.g;
+
+            if(ball.y >= 650-ball.r){
+                ball.y = 650-ball.r; //第一秒先着地
+                ball.vy = -ball.vy*0.5; //反弹  0.5表示空气阻力摩擦系数
+            }
+        }
+
+        function render(ctx) {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI);
+            ctx.closePath();
+
+            ctx.fillStyle = ball.color;
+            ctx.fill();
+        }
+
+
+        
+    </script>
+</body>
+
+</html>
